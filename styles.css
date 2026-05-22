@@ -17,15 +17,29 @@
   --box-hover: var(--blue3);
   --text-default: var(--blue1);
   --text-button: white;
+}
 
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;  
+  }
+}
+
+*:not(.copied) {
+  animation: fadein 0.5s ease;
 }
 
 body {
 
   background-image: url('./assets/bg.png');
+  background-color: var(--blue5);
   font-family: nunito, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-default)
+  
 
 }
 
@@ -197,7 +211,6 @@ p {
 
 }
 
-
 .box:hover {
   background-color: var(--box-hover);
   padding-left: 16px;
@@ -209,7 +222,7 @@ p {
   flex: 1;
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 90px 1fr;
+  grid-template-rows: 100px 1fr;
   gap: 8px;
   overflow-y: hidden;
 
@@ -226,19 +239,46 @@ p {
 
 }
 
-#avatar {
+.games-container {
+  column-count: 2;
+  column-gap: 8px;
+  padding: 4px;
+}
+
+.others-container {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile img {
   height: 100%;
   width: auto;
   border-radius: 3px;
 }
 
-#home1 {
-
+.profile {
   display: flex;
   flex-direction: row;
-
+  flex: 0;
 }
 
+.game-profile {
+  margin-bottom: 8px;
+}
+
+.game-profile img {
+  height: 200px;
+  width: auto;
+  border-radius: 3px;
+}
+
+.avatar {
+  background-color: var(--blue5);
+  border-radius: 3px;
+}
+ 
 .highlight {
   font-weight: bold;
 }
@@ -252,4 +292,68 @@ p {
   background-color: var(--box-bg);
   padding: 3px;
   border-radius: 3px;
+}
+
+.artworks-container {
+  column-count: 3;
+  column-gap: 16px;
+  padding: 16px;
+}
+
+.art-item {
+  break-inside: avoid;
+  margin-bottom: 16px;
+  background-color: var(--blue5);
+  border-radius: 8px;
+}
+
+.art-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .artworks-container {
+    column-count: 2;
+  }
+}
+
+.copy-container {
+  position: relative;
+  display: inline-block;
+  user-select: none;
+}
+
+.copy {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.copy:hover {
+  text-decoration: underline;
+}
+
+.copied {
+  color: #3b6087;
+  font-weight: bold;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.1s ease;
+}
+
+.copy-container.show-tooltip .copied {
+  opacity: 1;
+}
+
+a {
+  font-weight: bold;
+  text-decoration: none;
+  color:rgb(103, 40, 211);
+}
+
+.link-container a:hover {
+  text-decoration: underline;
 }
